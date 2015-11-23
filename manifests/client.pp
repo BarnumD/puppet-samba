@@ -8,7 +8,12 @@
 #  include samba::client
 #
 class samba::client (
-  $mount_point                = '/mnt/smb',
+  $shares					= {},
 ) inherits ::samba::params {
 
+  # Main client package
+  package { $::samba::params::client_package: ensure => 'installed' }
+
+  
+  
 }

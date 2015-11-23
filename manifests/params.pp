@@ -12,6 +12,7 @@ class samba::params {
       $secretstdb = '/var/lib/samba/private/secrets.tdb'
       $config_file = '/etc/samba/smb.conf'
       $package = 'samba'
+	  $client_package = 'samba-client'
     }
     'Debian': {
       if $::operatingsystem == 'Debian' and versioncmp($::operatingsystemrelease, '8') < 0 {
@@ -26,19 +27,22 @@ class samba::params {
       }
       $config_file = '/etc/samba/smb.conf'
       $package = 'samba'
+	  $client_package = 'smbclient'
     }
     'Freebsd': {
       $service = [ 'samba' ]
       $secretstdb = '/var/lib/samba/secrets.tdb'
       $config_file = '/usr/local/etc/smb.conf'
       $package = 'samba36'
+	  $client_package = 'samba36-smbclient'
     }
     default: {
       $service = [ 'samba' ]
       $secretstdb = '/usr/local/samba/private/secrets.tdb'
       $config_file = '/etc/samba/smb.conf'
       $package = 'samba'
+	  $client_package = 'smbclient'
     }
   }
-
+  
 }

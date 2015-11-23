@@ -42,6 +42,21 @@ class { '::samba::server':
   },
   selinux_enable_home_dirs => true,
 }
+
+class { '::samba::client':
+  shares => {
+    '\\server\share1' => [
+      'mount_point_root = /mnt/smb',
+	  'mount_folder_name = share1',
+	  'username = username',
+	  'password = password',
+    ],
+  '\\server2\share2' => [
+      'mount_point_root = /mnt/smb',
+	  'mount_folder_name = share2',
+	  'username = username',
+	  'password = password',
+    ],
 ```
 
 ```yaml
