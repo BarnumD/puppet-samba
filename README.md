@@ -45,15 +45,14 @@ class { '::samba::server':
 
 class { '::samba::client':
   shares => {
-    '\\server\share1' => [
-      'mount_point_root = /mnt/smb',
-	  'mount_folder_name = share1',
+    '//server/share1' => [
+      'mount_point = /mnt/smb/share1',
 	  'username = username',
 	  'password = password',
+	  'domain = DOMAIN',
     ],
-  '\\server2\share2' => [
-      'mount_point_root = /mnt/smb',
-	  'mount_folder_name = share2',
+  '//server2/share2' => [
+      'mount_point = /mnt/smb/share2',
 	  'username = username',
 	  'password = password',
     ],

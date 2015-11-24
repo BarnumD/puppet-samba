@@ -11,9 +11,10 @@ class samba::client (
   $shares					= {},
 ) inherits ::samba::params {
 
-  # Main client package
-  package { $::samba::params::client_package: ensure => 'installed' }
+  # Main cifs-utils package
+  package { $::samba::params::utils_package: ensure => 'installed' }
 
-  
-  
+  define mount_share(mount{${name}: name => ${mount_point}, ensure => 'mounted', device => ${name}, username => ${username}, password => ${password}, domain => ${domain}, fstype => 'cifs', atboot => true, options => 'defaults',})
+  create_resources(mount_share, $shares)
+  #
 }
