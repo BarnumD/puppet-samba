@@ -14,7 +14,19 @@ class samba::client (
   # Main cifs-utils package
   package { $::samba::params::utils_package: ensure => 'installed' }
 
-  define mount_share(mount{${name}: name => ${mount_point}, ensure => 'mounted', device => ${name}, username => ${username}, password => ${password}, domain => ${domain}, fstype => 'cifs', atboot => true, options => 'defaults',})
+  define mount_share(
+    #Set variables
+	$options = "rw,_netdev,user=${domain}/${username},password=${password}"
+	
+    mount{ ${mount_point}:
+	  name => ${mount_point},
+	  ensure => 'mounted',
+	  atboot => true,
+	  device => ${share},
+	  fstype => 'cifs',
+	  options => $options,
+	}
+  )
   create_resources(mount_share, $shares)
   #
 }

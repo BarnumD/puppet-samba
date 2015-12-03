@@ -46,12 +46,14 @@ class { '::samba::server':
 class { '::samba::client':
   shares => {
     '//server/share1' => [
+      'share = //server/share1',
       'mount_point = /mnt/smb/share1',
 	  'username = username',
 	  'password = password',
 	  'domain = DOMAIN',
     ],
   '//server2/share2' => [
+      'share = //server/share1',
       'mount_point = /mnt/smb/share2',
 	  'username = username',
 	  'password = password',
