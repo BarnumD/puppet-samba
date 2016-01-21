@@ -13,6 +13,11 @@ class samba::client (
 
   # Main cifs-utils package
   package { $::samba::params::utils_package: ensure => 'installed' }
+  
+  case $::osfamily {
+    'RedHat','Debian': { }
+    Default : { fail("Unsupported OS")}
+  }
 
   define mount_share(
     #Set variables
